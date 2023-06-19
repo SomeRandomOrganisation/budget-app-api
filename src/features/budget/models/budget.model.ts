@@ -1,6 +1,6 @@
-import { model, Schema, Types } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 
-const expenses = new Schema({
+const budgetSchema = new Schema({
   userId: {
     type: Types.ObjectId,
     required: true,
@@ -9,8 +9,17 @@ const expenses = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   amount: {
     type: Number,
+    required: true,
+  },
+  frequency: {
+    type: String,
+    enum: ["daily", "weekly", "monthly"],
     required: true,
   },
   category: {
@@ -29,5 +38,5 @@ const expenses = new Schema({
   updatedAt: Date,
 });
 
-const ExpensesModel = model("Expenses", expenses);
-export { ExpensesModel };
+const BudgetModel = model("Budget", budgetSchema);
+export { BudgetModel };

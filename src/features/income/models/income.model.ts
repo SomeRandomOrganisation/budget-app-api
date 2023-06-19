@@ -15,7 +15,7 @@ const incomeSchema = new Schema({
   },
   frequency: {
     type: String,
-    enum: ["daily", "weekly", "monthly", "annually"],
+    enum: ["daily", "weekly", "monthly", "annually", "once"],
     required: true,
   },
   dayOfMonth: {
@@ -58,6 +58,7 @@ const incomeSchema = new Schema({
     enum: ["sun", "mon", "tue", "wed", "thur", "fri", "sat"],
     required: false,
   },
+  paymentDate: { type: Date, required: false },
   createdAt: Date,
   updatedAt: Date,
 });

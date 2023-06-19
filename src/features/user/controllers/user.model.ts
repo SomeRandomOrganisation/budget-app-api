@@ -33,6 +33,18 @@ const userSchema = new Schema({
     },
   },
   data: {
+    recurringExpenses: {
+      monthly: {
+        type: Number,
+        default: 0,
+      },
+    },
+    income: {
+      monthly: {
+        type: Number,
+        default: 0,
+      },
+    },
     savings: {
       type: Number,
       default: 0,

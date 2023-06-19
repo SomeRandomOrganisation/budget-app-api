@@ -1,9 +1,35 @@
 import express from "express";
+import { RecurringExpensesController } from "../features/recurring-expenses/controllers/recurring-expenses.controller";
 
 const recurringExpensesRoute = express.Router();
 
-recurringExpensesRoute.get("/", (req, res) => {});
+const routes = [
+  {
+    path: "/",
+    method: "get",
+    controller: RecurringExpensesController.getAllForUser,
+  },
+  {
+    path: "/",
+    method: "post",
+    controller: RecurringExpensesController.create,
+  },
+  {
+    path: "/breakdown",
+    method: "get",
+    controller: RecurringExpensesController.getBreakdown,
+  },
+];
 
-recurringExpensesRoute.post("/", (req, res) => {});
+routes.forEach((route) => {
+  recurringExpensesRoute[route.method](route.path, async (req, res) => {
+    const response = await route.controller({
+      ...req,
+      auth: res.locals.auth,
+    });
+
+    res.status(response.statusCode).send(response.data);
+  });
+});
 
 export { recurringExpensesRoute };

@@ -13,9 +13,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
+  const user = await UserModel.findById(
+    new Types.ObjectId("648f4deded94bdb1780099a7")
+  );
+
   res.locals.auth = {
-    userId: new Types.ObjectId("648f2b04134647042e67e88c"),
+    user,
   };
 
   next();
