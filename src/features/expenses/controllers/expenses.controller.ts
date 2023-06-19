@@ -31,10 +31,19 @@ class ExpenseController {
           },
         },
       },
-    ]).exec();
+      {
+        $project: {
+          _id: 0,
+          category: "$_id",
+          amount: "$amount",
+        },
+      },
+    ])
+      .sort({ amount: -1 })
+      .exec();
 
     return {
-      statusCode: 201,
+      statusCode: 200,
       data: grouped,
     };
   }
