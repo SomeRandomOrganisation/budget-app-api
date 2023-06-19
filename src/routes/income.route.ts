@@ -1,35 +1,27 @@
 import express from "express";
 import { IncomeController } from "../features/income/controllers/income.controller";
+import { authMiddleware } from "../middlewares/auth-middleware";
+import { IRoute } from "./expense.route";
 
-const incomeRoute = express.Router();
-
-const routes = [
+const incomeRoute: IRoute[] = [
   {
     path: "/",
     method: "get",
     controller: IncomeController.getAllForUser,
+    middlewares: [authMiddleware],
   },
   {
     path: "/",
     method: "post",
     controller: IncomeController.create,
+    middlewares: [authMiddleware],
   },
   {
     path: "/:id",
     method: "put",
     controller: IncomeController.update,
+    middlewares: [authMiddleware],
   },
 ];
-
-routes.forEach((route) => {
-  incomeRoute[route.method](route.path, async (req, res) => {
-    const response = await route.controller({
-      ...req,
-      auth: res.locals.auth,
-    });
-
-    res.status(response.statusCode).send(response.data);
-  });
-});
 
 export { incomeRoute };

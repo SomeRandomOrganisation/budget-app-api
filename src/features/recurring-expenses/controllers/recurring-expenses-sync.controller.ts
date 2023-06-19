@@ -1,4 +1,4 @@
-import { UserModel } from "../../user/controllers/user.model";
+import { UserModel } from "../../user/models/user.model";
 import { RecurringExpensesModel } from "../models/recurring-expenses.model";
 
 class RecurringExpensesSyncController {

@@ -1,6 +1,12 @@
-import express from "express";
-import mongoose, { Types } from "mongoose";
-import { userRoute, recurringExpensesRoute, incomeRoute } from "./routes";
+import express, { Router } from "express";
+import mongoose from "mongoose";
+import {
+  userRoute,
+  recurringExpensesRoute,
+  incomeRoute,
+  expenseRoute,
+  IRoute,
+} from "./routes";
 import {
   UserModel,
   DebtModel,
@@ -8,26 +14,37 @@ import {
   IncomeModel,
   RecurringExpensesModel,
 } from "./models";
+import { authMiddleware } from "./middlewares/auth-middleware";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authMiddleware = async (req, res, next) => {
-  const user = await UserModel.findById(
-    new Types.ObjectId("648f4deded94bdb1780099a7")
-  );
+const registerRoute = (base: string, children: IRoute[]) => {
+  const router = Router();
 
-  res.locals.auth = {
-    user,
-  };
+  children.forEach((route) => {
+    router[route.method](
+      route.path,
+      ...(route.middlewares || []),
+      async (req, res) => {
+        const response = await route.controller({
+          ...req,
+          auth: res.locals.auth,
+        });
 
-  next();
+        res.status(response.statusCode).send(response.data);
+      }
+    );
+  });
+
+  app.use(base, router);
 };
 
 app.use("/user", userRoute);
-app.use("/income", authMiddleware, incomeRoute);
+registerRoute("/income", incomeRoute);
 app.use("/recurring-expenses", authMiddleware, recurringExpensesRoute);
+registerRoute("/expense", expenseRoute);
 
 mongoose
   .connect(

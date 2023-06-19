@@ -1,4 +1,4 @@
-import { UserModel } from "./user.model";
+import { UserModel } from "../models/user.model";
 
 class UserController {
   public static async create(req) {

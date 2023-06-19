@@ -27,6 +27,7 @@ const budgetSchema = new Schema({
     enum: [
       "entertainment",
       "eating-out",
+      "food",
       "transport",
       "grocery",
       "cinema",
