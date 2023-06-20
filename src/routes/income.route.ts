@@ -1,7 +1,7 @@
 import express from "express";
 import { IncomeController } from "../features/income/controllers/income.controller";
 import { authMiddleware } from "../middlewares/auth-middleware";
-import { IRoute } from "./expense.route";
+import { IRoute } from "../core";
 
 const incomeRoute: IRoute[] = [
   {

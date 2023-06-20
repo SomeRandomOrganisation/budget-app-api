@@ -24,6 +24,10 @@ const recurringExpenses = new Schema({
     ],
     required: true,
   },
+  debtId: {
+    type: Types.ObjectId,
+    required: false,
+  },
   title: {
     type: String,
     required: true,

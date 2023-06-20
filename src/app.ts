@@ -5,16 +5,9 @@ import {
   recurringExpensesRoute,
   incomeRoute,
   expenseRoute,
-  IRoute,
 } from "./routes";
-import {
-  UserModel,
-  DebtModel,
-  ExpensesModel,
-  IncomeModel,
-  RecurringExpensesModel,
-} from "./models";
 import { authMiddleware } from "./middlewares/auth-middleware";
+import { IRoute } from "./core";
 
 const app = express();
 app.use(express.json());

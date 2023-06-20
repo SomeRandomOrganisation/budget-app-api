@@ -46,6 +46,10 @@ const expenses = new Schema(
       ],
       required: true,
     },
+    debtId: {
+      type: Types.ObjectId,
+      required: false,
+    },
     createdAt: Date,
     updatedAt: Date,
   },

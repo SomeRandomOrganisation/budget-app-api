@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { UserModel } from "../models";
+import { UserModel } from "../features/user/models/user.model";
 
 export const authMiddleware = async (req, res, next) => {
   const user = await UserModel.findById(

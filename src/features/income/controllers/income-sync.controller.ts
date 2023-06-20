@@ -1,4 +1,4 @@
-import { UserModel } from "../../../models";
+import { UserModel } from "../../user/models/user.model";
 import { IncomeModel } from "../models/income.model";
 
 class IncomeSyncController {
