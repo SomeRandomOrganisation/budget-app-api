@@ -1,4 +1,4 @@
-import { IResponse } from "../../../routes/expense.route";
+import { IResponse } from "../../../core";
 import { ExpensesModel, IExpense } from "../models/expenses.model";
 
 class ExpenseController {

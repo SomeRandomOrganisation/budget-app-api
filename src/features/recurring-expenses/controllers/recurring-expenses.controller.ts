@@ -1,8 +1,8 @@
 import moment from "moment";
-import { RecurringExpensesModel } from "../../../models";
-import { IResponse } from "../../../routes/expense.route";
 import { IncomeSyncController } from "../../income/controllers/income-sync.controller";
 import { RecurringExpensesSyncController } from "./recurring-expenses-sync.controller";
+import { IResponse } from "../../../core";
+import { RecurringExpensesModel } from "../models/recurring-expenses.model";
 
 class RecurringExpensesController {
   public static async getAllForUser(req): Promise<IResponse<any>> {

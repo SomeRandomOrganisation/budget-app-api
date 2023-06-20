@@ -1,6 +1,6 @@
 import express from "express";
 import { RecurringExpensesController } from "../features/recurring-expenses/controllers/recurring-expenses.controller";
-import { IRoute } from "./expense.route";
+import { IRoute } from "../core";
 
 const recurringExpensesRoute = express.Router();
 

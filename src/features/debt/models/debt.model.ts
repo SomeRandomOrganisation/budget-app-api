@@ -9,6 +9,10 @@ const debtSchema = new Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: false,
+  },
   amount: {
     type: String,
     required: true,

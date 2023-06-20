@@ -5,7 +5,12 @@
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "/",
+    "paths": {
+      "@app/core": ["src/core/index.ts"],
+      "@app/expenses": ["src/features/expenses"]
+    }
   },
   "lib": ["es2015"],
   "include": ["src/*.ts", "src/**/*.ts", "src/**/*.js"]
