@@ -17,6 +17,10 @@ const debtSchema = new Schema({
     type: String,
     required: true,
   },
+  amountPaid: {
+    type: String,
+    required: true,
+  },
   createdAt: Date,
   updatedAt: Date,
 });
